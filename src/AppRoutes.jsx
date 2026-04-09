@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './contexts/AuthContext'
+import Footer from './components/layout/Footer'
 import Landing from './pages/Landing'
 import Onboarding from './pages/Onboarding'
 import YoungRegister from './pages/Auth/YoungRegister'
@@ -34,7 +35,9 @@ function ProtectedRoute({ children, requiredRole }) {
 
 function AppRoutes() {
   return (
-    <Routes>
+    <div className="min-h-screen flex flex-col bg-white">
+      <div className="flex-1 flex flex-col w-full min-h-0">
+        <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/onboarding" element={<Onboarding />} />
       <Route path="/auth/young/register" element={<YoungRegister />} />
@@ -145,7 +148,10 @@ function AppRoutes() {
       />
       
       <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+        </Routes>
+      </div>
+      <Footer />
+    </div>
   )
 }
 

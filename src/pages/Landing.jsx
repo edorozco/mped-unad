@@ -1,11 +1,21 @@
 "use client"
+import { useMemo } from "react"
 import { useNavigate } from "react-router-dom"
+import { useJobs } from "../contexts/JobsContext"
 import Header from "../components/layout/Header"
-import Footer from "../components/layout/Footer"
 import Button from "../components/common/Button"
+import JobCard from "../components/jobs/JobCard"
 
 const Landing = () => {
   const navigate = useNavigate()
+  const { jobs } = useJobs()
+
+  const publishedVacancies = useMemo(() => {
+    return [...jobs]
+      .filter((j) => j.status === "active")
+      .sort((a, b) => Number(b.isFeatured) - Number(a.isFeatured))
+      .slice(0, 6)
+  }, [jobs])
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -179,6 +189,38 @@ const Landing = () => {
           </div>
         </section>
 
+        {/* Vacantes publicadas */}
+        <section className="py-20 bg-gray-soft-50 border-t border-gray-soft-200">
+          <div className="container-custom">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-primary-dark mb-4 text-balance">
+                Trabajos y vacantes publicadas
+              </h2>
+              <p className="text-lg text-gray-soft-300 max-w-2xl mx-auto">
+                Oportunidades reales de empresas en la plataforma. Explora el listado o abre una vacante para ver el detalle.
+              </p>
+            </div>
+            {publishedVacancies.length > 0 ? (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                  {publishedVacancies.map((job) => (
+                    <JobCard key={job.id} job={job} />
+                  ))}
+                </div>
+                <div className="text-center">
+                  <Button variant="outline" size="lg" onClick={() => navigate("/empleos")}>
+                    Ver todas las vacantes
+                  </Button>
+                </div>
+              </>
+            ) : (
+              <p className="text-center text-gray-soft-300">
+                Pronto podrás ver aquí las vacantes publicadas.
+              </p>
+            )}
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="relative overflow-hidden py-20 bg-primary-cyan text-white">
           <div className="container-custom text-center relative z-10">
@@ -192,7 +234,6 @@ const Landing = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   )
 }
