@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": "María González",
+    "email": "maria@example.com",
+    "phone": "+57 300 123 4567",
+    "role": "young",
+    "photo": "https://via.placeholder.com/150",
+    "skills": ["Comunicación", "Atención al cliente", "Organización"],
+    "availability": {
+      "monday": { "available": true, "start": "09:00", "end": "17:00" },
+      "tuesday": { "available": true, "start": "09:00", "end": "17:00" },
+      "wednesday": { "available": true, "start": "09:00", "end": "17:00" },
+      "thursday": { "available": true, "start": "09:00", "end": "17:00" },
+      "friday": { "available": true, "start": "09:00", "end": "15:00" },
+      "saturday": { "available": false },
+      "sunday": { "available": false }
+    },
+    "interests": ["Ventas", "Marketing", "Atención al cliente"],
+    "profileComplete": true
+  },
+  {
+    "id": 2,
+    "name": "Carlos Ramírez",
+    "email": "carlos@example.com",
+    "phone": "+57 310 987 6543",
+    "role": "employer",
+    "companyName": "Moda Express",
+    "companyNIT": "900123456-1",
+    "companyAddress": "Centro Comercial San Diego, Medellín",
+    "photo": "https://via.placeholder.com/150"
+  },
+  {
+    "id": 3,
+    "name": "Ana Martínez",
+    "email": "ana@example.com",
+    "phone": "+57 320 555 1234",
+    "role": "admin",
+    "photo": "https://via.placeholder.com/150"
+  }
+]

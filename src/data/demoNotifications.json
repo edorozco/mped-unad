@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "type": "application_accepted",
+    "title": "¡Tu postulación fue aceptada!",
+    "message": "Has sido seleccionado para el trabajo 'Asistente de ventas en tienda'. Contacta al empleador para coordinar detalles.",
+    "date": "2024-02-08T10:30:00",
+    "read": false,
+    "jobId": 1
+  },
+  {
+    "id": 2,
+    "type": "reminder",
+    "title": "Recordatorio: Trabajo mañana",
+    "message": "Tienes un trabajo programado mañana a las 2:00 PM. No olvides llegar puntual.",
+    "date": "2024-02-09T18:00:00",
+    "read": false,
+    "jobId": 1
+  },
+  {
+    "id": 3,
+    "type": "rating_received",
+    "title": "Nueva calificación recibida",
+    "message": "Moda Express te calificó con 5 estrellas. ¡Excelente trabajo!",
+    "date": "2024-02-10T14:20:00",
+    "read": true,
+    "jobId": 1
+  },
+  {
+    "id": 4,
+    "type": "credential_earned",
+    "title": "¡Nueva microcredencial obtenida!",
+    "message": "Has ganado la microcredencial 'Asistente de Ventas Certificado'. Compártela en tus redes.",
+    "date": "2024-02-11T09:15:00",
+    "read": false,
+    "credentialId": 1
+  },
+  {
+    "id": 5,
+    "type": "new_job",
+    "title": "Nueva oferta disponible",
+    "message": "Hay una nueva oferta que coincide con tus intereses: 'Repartidor de comida rápida'.",
+    "date": "2024-02-12T08:00:00",
+    "read": true,
+    "jobId": 2
+  }
+]
