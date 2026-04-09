@@ -40,6 +40,8 @@ function AppRoutes() {
       <Route path="/auth/young/register" element={<YoungRegister />} />
       <Route path="/auth/employer/register" element={<EmployerRegister />} />
       <Route path="/login" element={<Login />} />
+
+      <Route path="/empleos" element={<YoungHome />} />
       
       <Route 
         path="/profile/young" 
@@ -59,14 +61,7 @@ function AppRoutes() {
         } 
       />
       
-      <Route 
-        path="/offer/:id" 
-        element={
-          <ProtectedRoute requiredRole="young">
-            <OfferDetail />
-          </ProtectedRoute>
-        } 
-      />
+      <Route path="/offer/:id" element={<OfferDetail />} />
       
       <Route 
         path="/employer/dashboard" 

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import Button from '../../components/common/Button'
 import Input from '../../components/common/Input'
@@ -17,6 +17,8 @@ const Login = () => {
   const [success, setSuccess] = useState(false)
   const { login } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from
 
   const handleLogin = async (e) => {
     e.preventDefault()
@@ -31,7 +33,7 @@ const Login = () => {
       if (user?.role === 'employer') {
         navigate('/employer/dashboard')
       } else if (user?.role === 'young') {
-        navigate('/home')
+        navigate(typeof from === 'string' && from.startsWith('/') ? from : '/empleos')
       } else {
         navigate('/')
       }
@@ -62,6 +64,11 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-gray-soft-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-8">
+        <div className="mb-6">
+          <Link to="/" className="text-sm text-primary-cyan hover:underline">
+            ← Volver al inicio
+          </Link>
+        </div>
         {step === 1 && (
           <>
             <div className="text-center mb-8">

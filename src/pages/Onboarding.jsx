@@ -145,9 +145,25 @@ const Onboarding = () => {
     setCurrentSlide(index)
   }
 
+  const finalSlideIndex = slides.length - 1
+  const goToFinalSlide = () => setCurrentSlide(finalSlideIndex)
+  const showSkipControls = currentSlide < finalSlideIndex
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-dark to-primary-dark/90 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-8 md:p-12">
+      <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-8 md:p-12">
+        {showSkipControls && (
+          <button
+            type="button"
+            onClick={goToFinalSlide}
+            className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full text-primary-dark hover:bg-gray-soft-100 transition-colors"
+            aria-label="Ir al último paso"
+          >
+            <span className="text-2xl leading-none" aria-hidden>
+              ×
+            </span>
+          </button>
+        )}
         {/* Progress Dots */}
         <div className="flex justify-center gap-2 mb-8">
           {slides.map((_, index) => (
@@ -181,22 +197,33 @@ const Onboarding = () => {
           </div>
 
           {/* Navigation Buttons */}
-          {currentSlide < slides.length - 1 && (
-            <div className="flex justify-between mt-8">
-              <Button
-                variant="ghost"
-                onClick={prevSlide}
-                disabled={currentSlide === 0}
-              >
-                Atrás
-              </Button>
-              <Button
-                variant="primary"
-                onClick={nextSlide}
-              >
-                Siguiente
-              </Button>
-            </div>
+          {showSkipControls && (
+            <>
+              <div className="flex justify-between mt-8">
+                <Button
+                  variant="ghost"
+                  onClick={prevSlide}
+                  disabled={currentSlide === 0}
+                >
+                  Atrás
+                </Button>
+                <Button
+                  variant="primary"
+                  onClick={nextSlide}
+                >
+                  Siguiente
+                </Button>
+              </div>
+              <div className="text-center mt-6">
+                <button
+                  type="button"
+                  onClick={goToFinalSlide}
+                  className="text-sm text-gray-soft-200 hover:text-primary-cyan underline-offset-2 hover:underline"
+                >
+                  Omitir
+                </button>
+              </div>
+            </>
           )}
         </div>
       </div>

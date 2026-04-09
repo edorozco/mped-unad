@@ -1,9 +1,12 @@
 "use client"
+import { useNavigate } from "react-router-dom"
 import Header from "../components/layout/Header"
 import Footer from "../components/layout/Footer"
 import Button from "../components/common/Button"
 
 const Landing = () => {
+  const navigate = useNavigate()
+
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
@@ -24,10 +27,10 @@ const Landing = () => {
                 Conectamos jóvenes talentosos con oportunidades de trabajo que impulsan su futuro profesional
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="primary" size="lg" onClick={() => (window.location.href = "/onboarding")}>
+                <Button variant="primary" size="lg" onClick={() => navigate("/onboarding")}>
                   Comenzar ahora
                 </Button>
-                <Button variant="outlineLight" size="lg" onClick={() => (window.location.href = "/auth/employer/register")}>
+                <Button variant="outlineLight" size="lg" onClick={() => navigate("/auth/employer/register")}>
                   Soy empleador
                 </Button>
               </div>
@@ -183,7 +186,7 @@ const Landing = () => {
             <p className="text-xl text-white/95 mb-10 max-w-2xl mx-auto">
               Únete a miles de jóvenes que ya están construyendo su futuro profesional
             </p>
-            <Button variant="secondary" size="lg" onClick={() => (window.location.href = "/onboarding")}>
+            <Button variant="secondary" size="lg" onClick={() => navigate("/onboarding")}>
               Comenzar ahora
             </Button>
           </div>

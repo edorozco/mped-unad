@@ -63,6 +63,11 @@ export default function YoungRegisterPage() {
   return (
     <div className="min-h-screen bg-gray-soft-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-8">
+        <div className="mb-6">
+          <Link href="/" className="text-sm text-primary-cyan hover:underline">
+            ← Volver al inicio
+          </Link>
+        </div>
         {step === 1 && (
           <>
             <div className="text-center mb-8">
@@ -135,7 +140,7 @@ export default function YoungRegisterPage() {
 
         {step === 3 && (
           <div className="text-center py-4">
-            <div className="text-6xl mb-6">���</div>
+            <div className="text-6xl mb-6">✅</div>
             <h1 className="text-3xl font-display font-bold text-primary-dark mb-4">¡Registro exitoso!</h1>
             <p className="text-gray-soft-200 mb-8">
               Tu cuenta ha sido creada correctamente. Ahora completa tu perfil para comenzar.

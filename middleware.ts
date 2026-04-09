@@ -5,7 +5,8 @@ const protectedRoutes = {
   young: ["/home", "/profile/young", "/offer", "/credentials", "/ratings", "/notifications"],
   employer: ["/employer/dashboard", "/employer/create-job", "/work"],
   admin: ["/admin/dashboard"],
-  all: ["/home", "/profile", "/offer", "/credentials", "/ratings", "/notifications", "/employer", "/work", "/admin"],
+  // /empleos y /offer/:id son públicos (listado y detalle sin auth)
+  all: ["/home", "/profile", "/credentials", "/ratings", "/notifications", "/employer", "/work", "/admin"],
 }
 
 export function middleware(request: NextRequest) {

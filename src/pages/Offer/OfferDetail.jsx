@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { useJobs } from '../../contexts/JobsContext'
 import { useAuth } from '../../contexts/AuthContext'
 import Header from '../../components/layout/Header'
@@ -12,8 +12,10 @@ import Card from '../../components/common/Card'
 const OfferDetail = () => {
   const { id } = useParams()
   const navigate = useNavigate()
+  const location = useLocation()
   const { getJobById, applyToJob } = useJobs()
-  const { user } = useAuth()
+  const { user, isAuthenticated } = useAuth()
+  const listingsPath = '/empleos'
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [applied, setApplied] = useState(false)
 
@@ -25,18 +27,20 @@ const OfferDetail = () => {
         <Header />
         <div className="container-custom py-12 text-center">
           <h2 className="text-2xl font-bold text-primary-dark mb-4">Oferta no encontrada</h2>
-          <Button onClick={() => navigate('/home')}>Volver a ofertas</Button>
+          <Button onClick={() => navigate('/empleos')}>Volver a ofertas</Button>
         </div>
       </div>
     )
   }
 
   const handleApply = () => {
-    if (user) {
-      applyToJob(job.id, user.id)
-      setApplied(true)
-      setShowConfirmation(true)
+    if (!isAuthenticated || !user) {
+      navigate('/login', { state: { from: location.pathname } })
+      return
     }
+    applyToJob(job.id, user.id)
+    setApplied(true)
+    setShowConfirmation(true)
   }
 
   return (
@@ -45,7 +49,7 @@ const OfferDetail = () => {
       <div className="container-custom py-6">
         <Button
           variant="ghost"
-          onClick={() => navigate('/home')}
+          onClick={() => navigate(listingsPath)}
           className="mb-4"
         >
           ← Volver
@@ -173,7 +177,7 @@ const OfferDetail = () => {
                 onClick={handleApply}
                 disabled={applied}
               >
-                {applied ? 'Ya postulado' : 'Postularme'}
+                {applied ? 'Ya postulado' : isAuthenticated ? 'Postularme' : 'Iniciar sesión para postular'}
               </Button>
             </Card>
           </div>
@@ -185,7 +189,7 @@ const OfferDetail = () => {
         isOpen={showConfirmation}
         onClose={() => {
           setShowConfirmation(false)
-          navigate('/home')
+          navigate(listingsPath)
         }}
         title="Postulación enviada"
       >
@@ -199,7 +203,7 @@ const OfferDetail = () => {
             fullWidth
             onClick={() => {
               setShowConfirmation(false)
-              navigate('/home')
+              navigate(listingsPath)
             }}
           >
             Ver más ofertas

@@ -1,62 +1,176 @@
 "use client"
 
+import { useState } from "react"
 import { useRouter } from "next/navigation"
-import Link from "next/link"
 import Button from "@/src/components/common/Button"
 
 export default function OnboardingPage() {
+  const [currentSlide, setCurrentSlide] = useState(0)
   const router = useRouter()
 
+  const slides = [
+    {
+      title: "¡Bienvenido a MPED!",
+      description: "Tu plataforma para encontrar microempleos que impulsen tu carrera profesional",
+      content: (
+        <div className="text-center">
+          <div className="text-8xl mb-8">👋</div>
+          <p className="text-lg text-gray-soft-200">
+            Conectamos jóvenes talentosos con oportunidades de trabajo flexibles
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "¿Qué ofrece la plataforma?",
+      description: "Descubre todas las ventajas de ser parte de MPED",
+      content: (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <div className="bg-white p-6 rounded-xl shadow-md">
+            <div className="text-4xl mb-3">💼</div>
+            <h3 className="font-semibold text-primary-dark mb-2">Microempleos</h3>
+            <p className="text-sm text-gray-soft-200">Trabajos flexibles adaptados a tu horario</p>
+          </div>
+          <div className="bg-white p-6 rounded-xl shadow-md">
+            <div className="text-4xl mb-3">🏆</div>
+            <h3 className="font-semibold text-primary-dark mb-2">Microcredenciales</h3>
+            <p className="text-sm text-gray-soft-200">Valida tus habilidades con credenciales digitales</p>
+          </div>
+          <div className="bg-white p-6 rounded-xl shadow-md">
+            <div className="text-4xl mb-3">⭐</div>
+            <h3 className="font-semibold text-primary-dark mb-2">Calificaciones</h3>
+            <p className="text-sm text-gray-soft-200">Construye tu reputación profesional</p>
+          </div>
+          <div className="bg-white p-6 rounded-xl shadow-md">
+            <div className="text-4xl mb-3">📱</div>
+            <h3 className="font-semibold text-primary-dark mb-2">Fácil de usar</h3>
+            <p className="text-sm text-gray-soft-200">Plataforma intuitiva y accesible</p>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "¿Cómo funciona?",
+      description: "Solo necesitas 4 pasos para comenzar",
+      content: (
+        <div className="space-y-6 mt-8">
+          {[
+            ["1", "Regístrate con tu teléfono", "Crea tu cuenta en segundos"],
+            ["2", "Completa tu perfil", "Añade tus habilidades, disponibilidad e intereses"],
+            ["3", "Explora ofertas", "Encuentra trabajos que se adapten a ti"],
+            ["4", "Postúlate y trabaja", "Gana experiencia y construye tu portafolio"],
+          ].map(([n, t, d]) => (
+            <div key={n} className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-primary-cyan rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
+                {n}
+              </div>
+              <div>
+                <h3 className="font-semibold text-primary-dark mb-1">{t}</h3>
+                <p className="text-sm text-gray-soft-200">{d}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      ),
+    },
+    {
+      title: "¡Comencemos!",
+      description: "Elige cómo quieres registrarte",
+      content: (
+        <div className="mt-8 space-y-4">
+          <Button variant="primary" size="lg" fullWidth onClick={() => router.push("/auth/young/register")}>
+            Registrarme como joven
+          </Button>
+          <Button variant="outline" size="lg" fullWidth onClick={() => router.push("/auth/employer/register")}>
+            Registrarme como empleador
+          </Button>
+          <div className="text-center mt-6">
+            <button
+              type="button"
+              onClick={() => router.push("/login")}
+              className="text-primary-cyan hover:underline"
+            >
+              Ya tengo cuenta, iniciar sesión
+            </button>
+          </div>
+        </div>
+      ),
+    },
+  ]
+
+  const finalSlideIndex = slides.length - 1
+  const goToFinalSlide = () => setCurrentSlide(finalSlideIndex)
+  const showSkipControls = currentSlide < finalSlideIndex
+
+  const nextSlide = () => {
+    if (currentSlide < finalSlideIndex) setCurrentSlide(currentSlide + 1)
+  }
+
+  const prevSlide = () => {
+    if (currentSlide > 0) setCurrentSlide(currentSlide - 1)
+  }
+
+  const goToSlide = (index: number) => setCurrentSlide(index)
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-dark to-primary-dark/90 text-white flex items-center justify-center p-4">
-      <div className="max-w-2xl w-full text-center">
-        <div className="mb-8">
-          <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">Bienvenido a MPED</h1>
-          <p className="text-xl text-gray-soft-100 mb-8">Elige tu rol para comenzar a conectarte con oportunidades</p>
+    <div className="min-h-screen bg-gradient-to-br from-primary-dark to-primary-dark/90 flex items-center justify-center p-4">
+      <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-8 md:p-12">
+        {showSkipControls && (
+          <button
+            type="button"
+            onClick={goToFinalSlide}
+            className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full text-primary-dark hover:bg-gray-soft-100 transition-colors"
+            aria-label="Ir al último paso"
+          >
+            <span className="text-2xl leading-none" aria-hidden>
+              ×
+            </span>
+          </button>
+        )}
+        <div className="flex justify-center gap-2 mb-8">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              onClick={() => goToSlide(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                index === currentSlide ? "bg-primary-cyan w-8" : "bg-gray-soft-200"
+              }`}
+            />
+          ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Young Worker Option */}
-          <div className="bg-white/10 backdrop-blur rounded-2xl p-8 hover:bg-white/20 transition-all">
-            <div className="text-6xl mb-6">👨‍💼</div>
-            <h2 className="text-2xl font-display font-bold mb-4">Soy Joven</h2>
-            <p className="text-gray-soft-100 mb-6">
-              Busco oportunidades de trabajo que se adapten a mi disponibilidad y habilidades
-            </p>
-            <Button variant="primary" fullWidth onClick={() => router.push("/auth/young/register")}>
-              Registrarse como joven
-            </Button>
-            <p className="text-sm text-gray-soft-100 mt-4">
-              Ya tengo cuenta{" "}
-              <Link href="/login" className="text-primary-cyan hover:underline">
-                Iniciar sesión
-              </Link>
-            </p>
+        <div className="min-h-[400px] flex flex-col">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl md:text-4xl font-display font-bold text-primary-dark mb-4">
+              {slides[currentSlide].title}
+            </h1>
+            <p className="text-gray-soft-200">{slides[currentSlide].description}</p>
           </div>
 
-          {/* Employer Option */}
-          <div className="bg-white/10 backdrop-blur rounded-2xl p-8 hover:bg-white/20 transition-all">
-            <div className="text-6xl mb-6">🏢</div>
-            <h2 className="text-2xl font-display font-bold mb-4">Soy Empleador</h2>
-            <p className="text-gray-soft-100 mb-6">
-              Busco talento joven para proyectos que requieren dedicación y creatividad
-            </p>
-            <Button variant="primary" fullWidth onClick={() => router.push("/auth/employer/register")}>
-              Registrarse como empleador
-            </Button>
-            <p className="text-sm text-gray-soft-100 mt-4">
-              Ya tengo cuenta{" "}
-              <Link href="/login" className="text-primary-cyan hover:underline">
-                Iniciar sesión
-              </Link>
-            </p>
-          </div>
-        </div>
+          <div className="flex-grow flex items-center justify-center">{slides[currentSlide].content}</div>
 
-        <div className="mt-12 flex gap-4 justify-center items-center text-sm text-gray-soft-100">
-          <Link href="/" className="hover:text-white">
-            Volver al inicio
-          </Link>
+          {showSkipControls && (
+            <>
+              <div className="flex justify-between mt-8">
+                <Button variant="ghost" onClick={prevSlide} disabled={currentSlide === 0}>
+                  Atrás
+                </Button>
+                <Button variant="primary" onClick={nextSlide}>
+                  Siguiente
+                </Button>
+              </div>
+              <div className="text-center mt-6">
+                <button
+                  type="button"
+                  onClick={goToFinalSlide}
+                  className="text-sm text-gray-soft-200 hover:text-primary-cyan underline-offset-2 hover:underline"
+                >
+                  Omitir
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

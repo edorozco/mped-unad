@@ -10,7 +10,7 @@ const Navigation = () => {
   const isActive = (path) => location.pathname === path
 
   const navItems = user?.role === 'young' ? [
-    { path: '/home', icon: '🏠', label: 'Inicio' },
+    { path: '/empleos', icon: '🏠', label: 'Inicio' },
     { path: '/credentials', icon: '🏆', label: 'Credenciales' },
     { path: '/ratings', icon: '⭐', label: 'Calificaciones' },
     { path: '/notifications', icon: '🔔', label: 'Notificaciones' },

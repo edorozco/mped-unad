@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { useAuth } from "@/app/contexts/AuthContext"
 import Button from "@/src/components/common/Button"
@@ -22,6 +22,8 @@ export default function LoginPage() {
   const [success, setSuccess] = useState(false)
   const { login } = useAuth()
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const redirect = searchParams.get("redirect")
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -36,7 +38,7 @@ export default function LoginPage() {
       if (user?.role === "employer") {
         router.push("/employer/dashboard")
       } else if (user?.role === "young") {
-        router.push("/home")
+        router.push(redirect && redirect.startsWith("/") ? redirect : "/empleos")
       } else {
         router.push("/")
       }
@@ -66,6 +68,11 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-gray-soft-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-8">
+        <div className="mb-6">
+          <Link href="/" className="text-sm text-primary-cyan hover:underline">
+            ← Volver al inicio
+          </Link>
+        </div>
         {step === 1 && (
           <>
             <div className="text-center mb-8">

@@ -15,7 +15,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Para Jóvenes</h4>
             <ul className="space-y-2 text-sm text-white/70">
-              <li><Link to="/home" className="hover:text-white transition-colors">Buscar Trabajos</Link></li>
+              <li><Link to="/empleos" className="hover:text-white transition-colors">Buscar Trabajos</Link></li>
               <li><Link to="/credentials" className="hover:text-white transition-colors">Microcredenciales</Link></li>
               <li><Link to="/onboarding" className="hover:text-white transition-colors">¿Cómo funciona?</Link></li>
             </ul>

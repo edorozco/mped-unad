@@ -26,13 +26,14 @@ const Header = () => {
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
+            <Link
+              to="/empleos"
+              className="text-primary-dark hover:text-primary-cyan transition-colors font-medium"
+            >
+              Buscar empleos
+            </Link>
             {isAuthenticated ? (
               <>
-                {user?.role === "young" && (
-                  <Link to="/home" className="text-primary-dark hover:text-primary-cyan transition-colors font-medium">
-                    Ofertas
-                  </Link>
-                )}
                 {user?.role === "employer" && (
                   <Link
                     to="/employer/dashboard"

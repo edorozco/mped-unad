@@ -1,6 +1,6 @@
 "use client"
 
-import { useParams, useRouter } from "next/navigation"
+import { useParams, usePathname, useRouter } from "next/navigation"
 import { useJobs } from "@/app/contexts/JobsContext"
 import { useAuth } from "@/app/contexts/AuthContext"
 import Header from "@/src/components/layout/Header"
@@ -9,8 +9,9 @@ import Button from "@/src/components/common/Button"
 export default function OfferDetailPage() {
   const params = useParams()
   const router = useRouter()
+  const pathname = usePathname()
   const { getJobById, applyToJob } = useJobs()
-  const { user } = useAuth()
+  const { user, isAuthenticated } = useAuth()
 
   const job = getJobById(params.id as string)
 
@@ -20,7 +21,7 @@ export default function OfferDetailPage() {
         <Header />
         <div className="container-custom py-8 text-center">
           <h1 className="text-2xl font-bold text-primary-dark">Oferta no encontrada</h1>
-          <Button variant="outline" onClick={() => router.push("/home")} className="mt-4">
+          <Button variant="outline" onClick={() => router.push("/empleos")} className="mt-4">
             Volver a ofertas
           </Button>
         </div>
@@ -29,11 +30,13 @@ export default function OfferDetailPage() {
   }
 
   const handleApply = () => {
-    if (user) {
-      applyToJob(job.id, user.id)
-      alert("Aplicación enviada exitosamente")
-      router.push("/home")
+    if (!isAuthenticated || !user) {
+      router.push(`/login?redirect=${encodeURIComponent(pathname)}`)
+      return
     }
+    applyToJob(job.id, user.id)
+    alert("Aplicación enviada exitosamente")
+    router.push("/empleos")
   }
 
   return (
@@ -70,7 +73,7 @@ export default function OfferDetailPage() {
           </div>
 
           <Button variant="primary" fullWidth size="lg" onClick={handleApply}>
-            Aplicar a este trabajo
+            {isAuthenticated ? "Aplicar a este trabajo" : "Iniciar sesión para aplicar"}
           </Button>
         </div>
       </div>
