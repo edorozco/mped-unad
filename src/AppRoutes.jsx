@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './contexts/AuthContext'
 import Footer from './components/layout/Footer'
 import Landing from './pages/Landing'
+import Contact from './pages/Contact'
 import Onboarding from './pages/Onboarding'
 import YoungRegister from './pages/Auth/YoungRegister'
 import EmployerRegister from './pages/Auth/EmployerRegister'
@@ -39,6 +40,7 @@ function AppRoutes() {
       <div className="flex-1 flex flex-col w-full min-h-0">
         <Routes>
       <Route path="/" element={<Landing />} />
+      <Route path="/contacto" element={<Contact />} />
       <Route path="/onboarding" element={<Onboarding />} />
       <Route path="/auth/young/register" element={<YoungRegister />} />
       <Route path="/auth/employer/register" element={<EmployerRegister />} />

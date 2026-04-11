@@ -71,6 +71,35 @@ const Login = () => {
         </div>
         {step === 1 && (
           <>
+            <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-4 text-sm text-amber-950">
+              <p className="text-center font-semibold text-amber-900">Demo (UI funcional, sin backend)</p>
+
+              <div className="mt-4 space-y-1 border-t border-amber-200/80 pt-4">
+                <p className="font-semibold text-amber-900">Usuario</p>
+                <p className="text-amber-950/90">
+                  <span className="text-amber-800/90">Correo:</span>{' '}
+                  <code className="rounded bg-amber-100/90 px-1.5 py-0.5 text-amber-950">joven@demo.local</code>
+                </p>
+                <p className="text-amber-950/90">
+                  <span className="text-amber-800/90">Contraseña:</span>{' '}
+                  <code className="rounded bg-amber-100/90 px-1.5 py-0.5 text-amber-950">demo123</code>
+                </p>
+                <p className="text-xs text-amber-800/80">(sin marcar empresa)</p>
+              </div>
+
+              <div className="mt-4 space-y-1 border-t border-amber-200/80 pt-4">
+                <p className="font-semibold text-amber-900">Empleador</p>
+                <p className="text-amber-950/90">
+                  <span className="text-amber-800/90">Correo:</span>{' '}
+                  <code className="rounded bg-amber-100/90 px-1.5 py-0.5 text-amber-950">empleador@demo.local</code>
+                </p>
+                <p className="text-amber-950/90">
+                  <span className="text-amber-800/90">Contraseña:</span>{' '}
+                  <code className="rounded bg-amber-100/90 px-1.5 py-0.5 text-amber-950">demo123</code>
+                </p>
+                <p className="text-xs text-amber-800/80">(marcar casilla &quot;Soy empresa&quot;)</p>
+              </div>
+            </div>
             <div className="text-center mb-8">
               <h1 className="text-3xl font-display font-bold text-primary-dark mb-2">
                 Iniciar sesión

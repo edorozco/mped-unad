@@ -5,6 +5,7 @@ import { useJobs } from "../contexts/JobsContext"
 import Header from "../components/layout/Header"
 import Button from "../components/common/Button"
 import JobCard from "../components/jobs/JobCard"
+import AcademicTeamCards from "../components/academic/AcademicTeamCards"
 
 const Landing = () => {
   const navigate = useNavigate()
@@ -231,6 +232,22 @@ const Landing = () => {
             <Button variant="secondary" size="lg" onClick={() => navigate("/onboarding")}>
               Comenzar ahora
             </Button>
+          </div>
+        </section>
+
+        {/* Nuestro equipo — proyecto académico */}
+        <section className="py-20 bg-white border-t border-gray-soft-200">
+          <div className="container-custom">
+            <div className="text-center mb-16 max-w-3xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-primary-dark mb-4 text-balance">
+                Nuestro equipo
+              </h2>
+              <p className="text-lg text-gray-soft-300 leading-relaxed">
+                Proyecto de Ingeniería II · Universidad Nacional Abierta y a Distancia (UNAD)
+              </p>
+            </div>
+
+            <AcademicTeamCards />
           </div>
         </section>
       </main>

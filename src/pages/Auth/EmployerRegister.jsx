@@ -88,6 +88,17 @@ const EmployerRegister = () => {
         </div>
         {step === 1 && (
           <>
+            <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
+              <p className="font-semibold text-amber-900">Demo (UI funcional, sin backend)</p>
+              <p className="mt-2 text-amber-950/90">
+                <span className="font-medium">Correo:</span>{' '}
+                <code className="rounded bg-amber-100/80 px-1">empresa@demo.local</code>
+              </p>
+              <p className="mt-1 text-amber-950/90">
+                <span className="font-medium">Contraseña:</span>{' '}
+                <code className="rounded bg-amber-100/80 px-1">demo123</code> (repite el mismo en confirmar)
+              </p>
+            </div>
             <div className="text-center mb-8">
               <h1 className="text-3xl font-display font-bold text-primary-dark mb-2">
                 Registro Empleador
