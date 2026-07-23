@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthContext'
 import Header from '../../components/layout/Header'
+import Sidebar from '../../components/layout/Sidebar'
 import Navigation from '../../components/layout/Navigation'
 import Card from '../../components/common/Card'
 import Button from '../../components/common/Button'
@@ -9,6 +11,8 @@ import Input from '../../components/common/Input'
 import Modal from '../../components/common/Modal'
 
 const Ratings = () => {
+  const { user, isAuthenticated } = useAuth()
+  const showSidebar = isAuthenticated && user?.role === 'young'
   const [showRateForm, setShowRateForm] = useState(false)
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
@@ -57,6 +61,8 @@ const Ratings = () => {
   return (
     <div className="min-h-screen bg-gray-soft-50 pb-20 md:pb-0">
       <Header />
+      {showSidebar && <Sidebar />}
+      <div className={showSidebar ? 'md:ml-64' : ''}>
       <div className="container-custom py-8">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-display font-bold text-primary-dark">
@@ -199,6 +205,7 @@ const Ratings = () => {
             </p>
           </div>
         </Modal>
+      </div>
       </div>
       <Navigation />
     </div>

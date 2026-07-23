@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useJobs } from '../../contexts/JobsContext'
 import Header from '../../components/layout/Header'
+import EmployerSidebar from '../../components/layout/EmployerSidebar'
 import Button from '../../components/common/Button'
 import Input from '../../components/common/Input'
 import Card from '../../components/common/Card'
@@ -48,7 +49,7 @@ const CreateJob = () => {
       ...formData,
       payment: parseInt(formData.payment),
       company: 'Mi Empresa',
-      companyLogo: 'https://via.placeholder.com/60',
+      companyLogo: '',
       lat: 6.2476,
       lng: -75.5658
     })
@@ -58,6 +59,8 @@ const CreateJob = () => {
   return (
     <div className="min-h-screen bg-gray-soft-50">
       <Header />
+      <EmployerSidebar />
+      <div className="md:ml-64">
       <div className="container-custom py-8">
         <Button
           variant="ghost"
@@ -229,6 +232,7 @@ const CreateJob = () => {
             </div>
           </form>
         </Card>
+      </div>
       </div>
 
       {/* Success Modal */}

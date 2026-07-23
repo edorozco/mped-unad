@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useMemo } from 'react'
 import Header from '../../components/layout/Header'
+import EmployerSidebar from '../../components/layout/EmployerSidebar'
 import Card from '../../components/common/Card'
 import Button from '../../components/common/Button'
 import SkillChip from '../../components/common/SkillChip'
@@ -20,7 +21,8 @@ const ApplicantProfile = () => {
     return (
       <div className="min-h-screen bg-gray-soft-50">
         <Header />
-        <div className="container-custom py-12 text-center">
+        <EmployerSidebar />
+        <div className="md:ml-64 container-custom py-12 text-center">
           <h2 className="text-2xl font-bold text-primary-dark mb-4">Perfil no encontrado</h2>
           <Button variant="primary" onClick={() => navigate(`/work/${jobId}/applicants`)}>
             Volver a postulantes
@@ -35,7 +37,8 @@ const ApplicantProfile = () => {
   return (
     <div className="min-h-screen bg-gray-soft-50 pb-10">
       <Header />
-      <div className="container-custom py-8 max-w-3xl">
+      <EmployerSidebar />
+      <div className="md:ml-64 container-custom py-8 max-w-3xl">
         <Button variant="ghost" className="mb-8 px-0 sm:px-4 self-start" onClick={() => navigate(backHref)}>
           ← Volver a postulantes
         </Button>
@@ -147,7 +150,7 @@ const ApplicantProfile = () => {
 
         {applicant.credentials?.length > 0 && (
           <Card className="mb-8">
-            <h2 className="text-lg font-display font-semibold text-primary-dark mb-3">Microcredenciales</h2>
+            <h2 className="text-lg font-display font-semibold text-primary-dark mb-3">Credenciales</h2>
             <ul className="space-y-2">
               {applicant.credentials.map((c) => (
                 <li

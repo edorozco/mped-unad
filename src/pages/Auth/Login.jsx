@@ -33,7 +33,7 @@ const Login = () => {
       if (user?.role === 'employer') {
         navigate('/employer/dashboard')
       } else if (user?.role === 'young') {
-        navigate(typeof from === 'string' && from.startsWith('/') ? from : '/empleos')
+        navigate(typeof from === 'string' && from.startsWith('/') ? from : '/home')
       } else {
         navigate('/')
       }

@@ -29,8 +29,8 @@
   {
     "id": 4,
     "type": "credential_earned",
-    "title": "¡Nueva microcredencial obtenida!",
-    "message": "Has ganado la microcredencial 'Asistente de Ventas Certificado'. Compártela en tus redes.",
+    "title": "¡Nueva credencial obtenida!",
+    "message": "Has ganado la credencial 'Asistente de Ventas Certificado'. Compártela en tus redes.",
     "date": "2024-02-11T09:15:00",
     "read": false,
     "credentialId": 1

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useJobs } from '../../contexts/JobsContext'
 import Header from '../../components/layout/Header'
+import EmployerSidebar from '../../components/layout/EmployerSidebar'
 import Card from '../../components/common/Card'
 import Button from '../../components/common/Button'
 import SkillChip from '../../components/common/SkillChip'
@@ -34,7 +35,8 @@ const Applicants = () => {
     return (
       <div className="min-h-screen bg-gray-soft-50">
         <Header />
-        <div className="container-custom py-12 text-center">
+        <EmployerSidebar />
+        <div className="md:ml-64 container-custom py-12 text-center">
           <h2 className="text-2xl font-bold text-primary-dark mb-4">Oferta no encontrada</h2>
           <Button onClick={() => navigate('/employer/dashboard')}>Volver al panel</Button>
         </div>
@@ -46,7 +48,8 @@ const Applicants = () => {
     return (
       <div className="min-h-screen bg-gray-soft-50">
         <Header />
-        <div className="container-custom py-12">
+        <EmployerSidebar />
+        <div className="md:ml-64 container-custom py-12">
           <Card>
             <div className="text-center py-12">
               <div className="text-6xl mb-6">✅</div>
@@ -83,7 +86,8 @@ const Applicants = () => {
   return (
     <div className="min-h-screen bg-gray-soft-50">
       <Header />
-      <div className="container-custom py-8">
+      <EmployerSidebar />
+      <div className="md:ml-64 container-custom py-8">
         <Button
           variant="ghost"
           onClick={() => navigate('/employer/dashboard')}
