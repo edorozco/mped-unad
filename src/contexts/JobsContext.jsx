@@ -15,16 +15,23 @@ export function JobsProvider({ children }) {
   const [jobs, setJobs] = useState([])
   const [applications, setApplications] = useState([])
   const [filteredJobs, setFilteredJobs] = useState([])
+  const [savedJobs, setSavedJobs] = useState([])
 
   useEffect(() => {
     // Load jobs from demo data
     setJobs(demoJobs)
     setFilteredJobs(demoJobs)
-    
+
     // Load applications from localStorage
     const savedApplications = localStorage.getItem('mped_applications')
     if (savedApplications) {
       setApplications(JSON.parse(savedApplications))
+    }
+
+    // Load saved (bookmarked) jobs from localStorage
+    const savedJobIds = localStorage.getItem('mped_saved_jobs')
+    if (savedJobIds) {
+      setSavedJobs(JSON.parse(savedJobIds))
     }
   }, [])
 
@@ -63,6 +70,20 @@ export function JobsProvider({ children }) {
     localStorage.setItem('mped_applications', JSON.stringify(updatedApplications))
   }
 
+  const isJobSaved = (jobId, userId) => {
+    return savedJobs.some((s) => s.jobId === parseInt(jobId) && s.userId === userId)
+  }
+
+  const toggleSaveJob = (jobId, userId) => {
+    const id = parseInt(jobId)
+    const exists = savedJobs.some((s) => s.jobId === id && s.userId === userId)
+    const updated = exists
+      ? savedJobs.filter((s) => !(s.jobId === id && s.userId === userId))
+      : [...savedJobs, { jobId: id, userId }]
+    setSavedJobs(updated)
+    localStorage.setItem('mped_saved_jobs', JSON.stringify(updated))
+  }
+
   const createJob = (jobData) => {
     const newJob = {
       id: Date.now(),
@@ -89,6 +110,18 @@ export function JobsProvider({ children }) {
       filtered = filtered.filter(job => job.payment >= filters.minPayment)
     }
 
+    if (filters.locations && filters.locations.length > 0) {
+      filtered = filtered.filter(job => filters.locations.includes(job.location))
+    }
+
+    if (filters.modality) {
+      filtered = filtered.filter(job => job.modality === filters.modality)
+    }
+
+    if (filters.scheduleTypes && filters.scheduleTypes.length > 0) {
+      filtered = filtered.filter(job => filters.scheduleTypes.includes(job.scheduleType))
+    }
+
     if (filters.search) {
       const searchLower = filters.search.toLowerCase()
       filtered = filtered.filter(job =>
@@ -96,6 +129,12 @@ export function JobsProvider({ children }) {
         job.company.toLowerCase().includes(searchLower) ||
         job.description.toLowerCase().includes(searchLower)
       )
+    }
+
+    if (filters.sortBy === 'payment') {
+      filtered.sort((a, b) => b.payment - a.payment)
+    } else if (filters.sortBy === 'recent') {
+      filtered.sort((a, b) => new Date(b.startDate) - new Date(a.startDate))
     }
 
     setFilteredJobs(filtered)
@@ -111,7 +150,9 @@ export function JobsProvider({ children }) {
     getUserApplications,
     updateApplicationStatus,
     createJob,
-    filterJobs
+    filterJobs,
+    isJobSaved,
+    toggleSaveJob
   }
 
   return <JobsContext.Provider value={value}>{children}</JobsContext.Provider>

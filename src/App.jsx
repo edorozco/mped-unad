@@ -2,6 +2,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
 import { UserProvider } from './contexts/UserContext'
 import { JobsProvider } from './contexts/JobsContext'
+import { CoursesProvider } from './contexts/CoursesContext'
 import AppRoutes from './AppRoutes'
 
 function App() {
@@ -10,7 +11,9 @@ function App() {
       <AuthProvider>
         <UserProvider>
           <JobsProvider>
-            <AppRoutes />
+            <CoursesProvider>
+              <AppRoutes />
+            </CoursesProvider>
           </JobsProvider>
         </UserProvider>
       </AuthProvider>

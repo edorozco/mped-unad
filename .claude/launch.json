@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "vite-dev",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "pnpm@9", "dev"],
+      "port": 5180,
+      "autoPort": false
+    },
+    {
+      "name": "next-dev",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["next", "dev"],
+      "port": 3000,
+      "autoPort": true
+    }
+  ]
+}

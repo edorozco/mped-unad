@@ -54,45 +54,25 @@ export function AuthProvider({ children }) {
     })
   }
 
-  const registerYoung = async (phone, otp) => {
-    // Mock registration
-    return new Promise((resolve, reject) => {
+  const register = async ({ name, email, password, city, role, businessName, nit }) => {
+    // Mock registration — unified form for young/employer roles
+    return new Promise((resolve) => {
       setTimeout(() => {
         const newUser = {
           id: Date.now(),
-          phone,
-          role: 'young',
-          name: 'Nuevo Usuario',
-          profileComplete: false
-        }
-        
-        setUser(newUser)
-        setIsAuthenticated(true)
-        localStorage.setItem('mped_user', JSON.stringify(newUser))
-        resolve(newUser)
-      }, 500)
-    })
-  }
-
-  const registerEmployer = async (email, password, companyData) => {
-    // Mock registration
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const newUser = {
-          id: Date.now(),
+          name,
           email,
-          role: 'employer',
-          name: companyData.companyName,
-          companyName: companyData.companyName,
-          companyNIT: companyData.companyNIT,
-          companyAddress: companyData.companyAddress
+          city,
+          role,
+          profileComplete: false,
+          ...(role === 'employer' ? { businessName, nit } : {})
         }
-        
+
         setUser(newUser)
         setIsAuthenticated(true)
         localStorage.setItem('mped_user', JSON.stringify(newUser))
         resolve(newUser)
-      }, 500)
+      }, 800)
     })
   }
 
@@ -114,8 +94,7 @@ export function AuthProvider({ children }) {
     isAuthenticated,
     loading,
     login,
-    registerYoung,
-    registerEmployer,
+    register,
     logout,
     updateUser
   }

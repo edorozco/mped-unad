@@ -5,7 +5,7 @@
     "email": "maria@example.com",
     "phone": "+57 300 123 4567",
     "role": "young",
-    "photo": "https://via.placeholder.com/150",
+    "photo": "",
     "skills": ["Comunicación", "Atención al cliente", "Organización"],
     "availability": {
       "monday": { "available": true, "start": "09:00", "end": "17:00" },
@@ -28,7 +28,7 @@
     "companyName": "Moda Express",
     "companyNIT": "900123456-1",
     "companyAddress": "Centro Comercial San Diego, Medellín",
-    "photo": "https://via.placeholder.com/150"
+    "photo": ""
   },
   {
     "id": 3,
@@ -36,6 +36,6 @@
     "email": "ana@example.com",
     "phone": "+57 320 555 1234",
     "role": "admin",
-    "photo": "https://via.placeholder.com/150"
+    "photo": ""
   }
 ]

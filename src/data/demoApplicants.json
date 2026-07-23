@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "María González",
-    "photo": "https://via.placeholder.com/80",
+    "photo": "",
     "skills": ["Atención al cliente", "Ventas", "Comunicación"],
     "rating": 4.8,
     "appliedAt": "2024-02-08T10:30:00",
@@ -20,7 +20,7 @@
   {
     "id": 2,
     "name": "Carlos Pérez",
-    "photo": "https://via.placeholder.com/80",
+    "photo": "",
     "skills": ["Ventas", "Organización", "Puntualidad"],
     "rating": 4.5,
     "appliedAt": "2024-02-08T11:15:00",
@@ -38,7 +38,7 @@
   {
     "id": 3,
     "name": "Ana Martínez",
-    "photo": "https://via.placeholder.com/80",
+    "photo": "",
     "skills": ["Comunicación", "Trabajo en equipo", "Proactividad"],
     "rating": 5.0,
     "appliedAt": "2024-02-08T14:20:00",
@@ -56,7 +56,7 @@
   {
     "id": 4,
     "name": "Juan Rodríguez",
-    "photo": "https://via.placeholder.com/80",
+    "photo": "",
     "skills": ["Responsabilidad", "Puntualidad", "Trabajo en equipo"],
     "rating": 4.7,
     "appliedAt": "2024-02-08T15:45:00",
@@ -74,7 +74,7 @@
   {
     "id": 5,
     "name": "Laura Sánchez",
-    "photo": "https://via.placeholder.com/80",
+    "photo": "",
     "skills": ["Marketing digital", "Redes sociales", "Creatividad"],
     "rating": 4.9,
     "appliedAt": "2024-02-08T16:20:00",

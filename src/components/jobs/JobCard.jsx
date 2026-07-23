@@ -20,11 +20,7 @@ const JobCard = ({ job }) => {
         <div className="flex items-start gap-4 mb-4">
           <div className="w-16 h-16 bg-gray-soft-100 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden ring-2 ring-[#333]/25 group-hover:ring-primary-cyan transition-all">
             {job.companyLogo ? (
-              <img
-                src={job.companyLogo || "/placeholder.svg"}
-                alt={job.company}
-                className="w-full h-full object-cover"
-              />
+              <img src={job.companyLogo} alt={job.company} className="w-full h-full object-cover" />
             ) : (
               <span className="text-2xl">🏢</span>
             )}

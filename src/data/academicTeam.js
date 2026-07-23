@@ -1,10 +1,9 @@
 /** Integrantes del proyecto académico (Landing + Contacto) */
 export const ACADEMIC_PARTICIPANTS = [
-  "Camilo Orozco",
-  "Jonathan Rivera",
-  "Daniel Mejia",
-  "Angela Villa",
-  "Felipe Llamosa",
+  "Edwin Camilo Orozco Marquez",
+  "Elver Jonathan Rivera",
+  "Gustavo Antonio Rojas Dcroz",
+  "Brayan Pino",
 ]
 
 /** Mismo perfil para todo el equipo en esta demo */

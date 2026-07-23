@@ -33,7 +33,7 @@ const Onboarding = () => {
           </div>
           <div className="bg-white p-6 rounded-xl shadow-md">
             <div className="text-4xl mb-3">🏆</div>
-            <h3 className="font-semibold text-primary-dark mb-2">Microcredenciales</h3>
+            <h3 className="font-semibold text-primary-dark mb-2">Credenciales</h3>
             <p className="text-sm text-gray-soft-200">Valida tus habilidades con credenciales digitales</p>
           </div>
           <div className="bg-white p-6 rounded-xl shadow-md">

@@ -42,17 +42,17 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        /* MPED brand — navy, cyan, neutrals (landing reference) */
-        "primary-dark": "#1a2b3c",
-        "primary-cyan": "#40c4ff",
-        /** Gold accents for icons / stars (optional) */
-        "accent-gold": "#d4a03c",
+        /* MPED brand — Stitch "MPED Core" palette: deep petrol blue + turquoise growth accent */
+        "primary-dark": "#003345",
+        "primary-cyan": "#00bfa5",
+        /** Soft orange accent for icons / stars / high-priority CTAs */
+        "accent-gold": "#ff8f00",
         "gray-soft": {
-          50: "#f5f7f9",
-          100: "#eef2f6",
-          200: "#cbd5e1",
-          300: "#667085",
-          400: "#475467",
+          50: "#f8f9ff",
+          100: "#eff4ff",
+          200: "#c0c7cd",
+          300: "#40484c",
+          400: "#71787d",
         },
       },
       borderRadius: {

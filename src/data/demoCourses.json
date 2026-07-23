@@ -1,0 +1,389 @@
+[
+  {
+    "id": 1,
+    "title": "Master en Full-Stack Development 2024",
+    "shortDescription": "Aprende desde los fundamentos hasta el despliegue profesional con React, Node y AWS.",
+    "category": "Desarrollo Web",
+    "level": "Intermedio",
+    "duration": "32 horas",
+    "rating": 4.8,
+    "reviews": 1850,
+    "tags": ["Top Rated", "Nuevo"],
+    "featured": true,
+    "icon": "code",
+    "instructor": {
+      "name": "Ing. Daniela Restrepo",
+      "title": "Full-Stack Engineer",
+      "company": "MPED Academic",
+      "bio": "Daniela lleva 8 años construyendo productos digitales con React y Node.js, y ha formado a más de 300 desarrolladores junior en su carrera como instructora."
+    },
+    "badgeName": "Full-Stack Ready",
+    "whatYouWillLearn": [
+      "Construir interfaces con React y componentes reutilizables.",
+      "Diseñar APIs REST con Node.js y Express.",
+      "Desplegar aplicaciones en AWS de forma profesional.",
+      "Conectar el frontend y el backend con autenticación segura."
+    ],
+    "requirements": ["Conocimientos básicos de JavaScript.", "Computador con al menos 8GB de RAM."],
+    "modules": [
+      {
+        "id": 1,
+        "title": "Fundamentos de React",
+        "locked": false,
+        "lessons": [
+          { "title": "Componentes y props", "duration": "14:20", "type": "video" },
+          { "title": "Estado y hooks", "duration": "19:10", "type": "video" },
+          { "title": "Guía de estilos MPED (PDF)", "duration": "1 MB", "type": "pdf" }
+        ]
+      },
+      { "id": 2, "title": "APIs con Node y Express", "locked": true },
+      { "id": 3, "title": "Despliegue en AWS", "locked": true }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Diseño de Producto UI/UX Pro",
+    "shortDescription": "Domina Figma y metodologías de diseño centradas en el usuario para productos reales.",
+    "category": "Diseño UI/UX",
+    "level": "Principiante",
+    "duration": "20 horas",
+    "rating": 4.9,
+    "reviews": 2400,
+    "tags": ["Bestseller"],
+    "featured": true,
+    "icon": "brush",
+    "instructor": {
+      "name": "Lucía Fernández",
+      "title": "Product Designer",
+      "company": "Design Hub",
+      "bio": "Lucía diseña productos digitales desde hace 6 años y se especializa en investigación de usuarios y sistemas de diseño escalables."
+    },
+    "badgeName": "UI/UX Ready",
+    "whatYouWillLearn": [
+      "Crear wireframes y prototipos interactivos en Figma.",
+      "Aplicar principios de investigación centrada en el usuario.",
+      "Construir un sistema de diseño consistente.",
+      "Presentar y defender decisiones de diseño ante un equipo."
+    ],
+    "requirements": ["No requiere experiencia previa en diseño.", "Cuenta gratuita de Figma."],
+    "modules": [
+      {
+        "id": 1,
+        "title": "Fundamentos de UX",
+        "locked": false,
+        "lessons": [
+          { "title": "Investigación de usuarios", "duration": "16:40", "type": "video" },
+          { "title": "Arquitectura de información", "duration": "12:15", "type": "video" }
+        ]
+      },
+      { "id": 2, "title": "Prototipado en Figma", "locked": true },
+      { "id": 3, "title": "Sistemas de diseño", "locked": true }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Introducción a Python para Ciencia de Datos",
+    "shortDescription": "Aprende a analizar y visualizar datos reales usando Python, Pandas y librerías de visualización.",
+    "category": "Data Science",
+    "level": "Principiante",
+    "duration": "24 horas",
+    "rating": 4.7,
+    "reviews": 980,
+    "tags": [],
+    "featured": false,
+    "icon": "monitoring",
+    "instructor": {
+      "name": "Marco Aurelio Díaz",
+      "title": "Data Analyst",
+      "company": "DataFlow",
+      "bio": "Marco ha trabajado analizando datos para empresas de retail y logística, y es apasionado por enseñar ciencia de datos aplicada a problemas reales."
+    },
+    "badgeName": "Data Ready",
+    "whatYouWillLearn": [
+      "Manipular datos con Pandas y NumPy.",
+      "Crear visualizaciones claras de conjuntos de datos.",
+      "Limpiar y preparar datos para análisis.",
+      "Construir tu primer reporte de datos end-to-end."
+    ],
+    "requirements": ["No requiere experiencia previa en programación.", "Computador con acceso a internet."],
+    "modules": [
+      {
+        "id": 1,
+        "title": "Fundamentos de Python",
+        "locked": false,
+        "lessons": [
+          { "title": "Variables y estructuras de datos", "duration": "15:00", "type": "video" },
+          { "title": "Introducción a Pandas", "duration": "20:30", "type": "video" }
+        ]
+      },
+      { "id": 2, "title": "Visualización de datos", "locked": true }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Comunicación Efectiva en Equipos Remotos",
+    "shortDescription": "Desarrolla habilidades de comunicación y colaboración para equipos de trabajo distribuidos.",
+    "category": "Soft Skills",
+    "level": "Todos",
+    "duration": "12 horas",
+    "rating": 4.6,
+    "reviews": 640,
+    "tags": [],
+    "featured": false,
+    "icon": "forum",
+    "instructor": {
+      "name": "Elena Paz",
+      "title": "Leadership Coach",
+      "company": "Leadership Acad.",
+      "bio": "Elena forma equipos remotos desde hace más de 10 años, con foco en comunicación asertiva y cultura de trabajo a distancia."
+    },
+    "badgeName": "Comunicación Ready",
+    "whatYouWillLearn": [
+      "Dar y recibir feedback de forma constructiva.",
+      "Comunicarte con claridad en canales asincrónicos.",
+      "Manejar conflictos en equipos distribuidos.",
+      "Organizar tu tiempo para el trabajo remoto."
+    ],
+    "requirements": ["No requiere conocimientos previos."],
+    "modules": [
+      {
+        "id": 1,
+        "title": "Bases de la comunicación remota",
+        "locked": false,
+        "lessons": [{ "title": "Comunicación sincrónica vs asincrónica", "duration": "10:00", "type": "video" }]
+      },
+      { "id": 2, "title": "Feedback y manejo de conflictos", "locked": true }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Fundamentos de Ciberseguridad Corporativa",
+    "shortDescription": "Aprende los principios esenciales para proteger sistemas e información en entornos empresariales.",
+    "category": "Ciberseguridad",
+    "level": "Intermedio",
+    "duration": "40 horas",
+    "rating": 4.8,
+    "reviews": 510,
+    "tags": [],
+    "featured": false,
+    "icon": "shield",
+    "instructor": {
+      "name": "Jorge Ruiz",
+      "title": "Security Engineer",
+      "company": "SecureNet",
+      "bio": "Jorge se especializa en seguridad de aplicaciones y ha liderado auditorías de seguridad para empresas del sector financiero."
+    },
+    "badgeName": "Security Ready",
+    "whatYouWillLearn": [
+      "Identificar vulnerabilidades comunes en aplicaciones web.",
+      "Aplicar buenas prácticas de autenticación y autorización.",
+      "Responder ante incidentes de seguridad.",
+      "Proteger datos sensibles según estándares de la industria."
+    ],
+    "requirements": ["Conocimientos básicos de redes.", "Nociones de administración de sistemas."],
+    "modules": [
+      {
+        "id": 1,
+        "title": "Fundamentos de seguridad",
+        "locked": false,
+        "lessons": [{ "title": "Principios de seguridad de la información", "duration": "18:00", "type": "video" }]
+      },
+      { "id": 2, "title": "Seguridad en aplicaciones web", "locked": true }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Estrategia de Content Marketing y SEO",
+    "shortDescription": "Diseña estrategias de contenido y posicionamiento para hacer crecer una marca digital.",
+    "category": "Marketing Digital",
+    "level": "Principiante",
+    "duration": "18 horas",
+    "rating": 4.5,
+    "reviews": 720,
+    "tags": [],
+    "featured": false,
+    "icon": "campaign",
+    "instructor": {
+      "name": "Sara Miller",
+      "title": "Growth Marketer",
+      "company": "Growth Mind",
+      "bio": "Sara ha liderado estrategias de contenido para marcas digitales en Latinoamérica, combinando SEO y storytelling de marca."
+    },
+    "badgeName": "Marketing Ready",
+    "whatYouWillLearn": [
+      "Investigar palabras clave relevantes para tu audiencia.",
+      "Crear un calendario editorial de contenidos.",
+      "Optimizar contenido para buscadores (SEO on-page).",
+      "Medir el desempeño de tus campañas de contenido."
+    ],
+    "requirements": ["No requiere experiencia previa en marketing."],
+    "modules": [
+      {
+        "id": 1,
+        "title": "Fundamentos de SEO",
+        "locked": false,
+        "lessons": [{ "title": "Investigación de palabras clave", "duration": "13:20", "type": "video" }]
+      },
+      { "id": 2, "title": "Estrategia de contenidos", "locked": true }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Arquitectura de Microservicios con Spring Boot y Cloud",
+    "shortDescription": "Domina el desarrollo de sistemas escalables y resilientes con las mejores prácticas de la industria.",
+    "category": "Desarrollo Web",
+    "level": "Avanzado",
+    "duration": "36 horas",
+    "rating": 4.9,
+    "reviews": 2400,
+    "tags": ["Bestseller"],
+    "featured": false,
+    "icon": "hub",
+    "instructor": {
+      "name": "Ing. Roberto Sánchez",
+      "title": "Senior Cloud Solutions Architect",
+      "company": "GlobalTech",
+      "bio": "Roberto cuenta con más de 15 años de experiencia diseñando arquitecturas críticas para el sector bancario y retail. Es instructor certificado por AWS y apasionado por la mentoría de nuevos talentos digitales."
+    },
+    "badgeName": "Architect Ready",
+    "whatYouWillLearn": [
+      "Arquitecturas basadas en eventos con Kafka.",
+      "Comunicación RESTful y gRPC eficiente.",
+      "Seguridad centralizada con OAuth2 y JWT.",
+      "Observabilidad: Métricas, Logs y Tracing."
+    ],
+    "requirements": ["Conocimientos básicos de Java.", "Entendimiento de bases de datos SQL.", "PC con al menos 8GB de RAM."],
+    "modules": [
+      {
+        "id": 1,
+        "title": "Introducción a Microservicios",
+        "locked": false,
+        "lessons": [
+          { "title": "¿Qué son los Microservicios?", "duration": "12:05", "type": "video" },
+          { "title": "Monolitos vs Microservicios", "duration": "18:30", "type": "video" },
+          { "title": "Guía de arquitectura base (PDF)", "duration": "2 MB", "type": "pdf" }
+        ]
+      },
+      { "id": 2, "title": "Diseño de Ecosistemas", "locked": true },
+      { "id": 3, "title": "Despliegue y Orquestación", "locked": true }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Ofimática Básica",
+    "shortDescription": "Aprende a usar Word, Excel y PowerPoint desde cero para tus tareas de oficina diarias.",
+    "category": "Ofimática",
+    "level": "Principiante",
+    "duration": "10 horas",
+    "rating": 4.6,
+    "reviews": 430,
+    "tags": ["Nuevo"],
+    "featured": true,
+    "icon": "description",
+    "instructor": {
+      "name": "Camila Ortiz",
+      "title": "Capacitadora Ofimática",
+      "company": "MPED Academic",
+      "bio": "Camila ha formado a cientos de jóvenes en herramientas de oficina, con un enfoque práctico orientado al primer empleo administrativo."
+    },
+    "badgeName": "Ofimática Ready",
+    "whatYouWillLearn": [
+      "Crear y dar formato a documentos en Word.",
+      "Construir hojas de cálculo básicas en Excel.",
+      "Diseñar presentaciones claras en PowerPoint.",
+      "Organizar archivos y carpetas de forma profesional."
+    ],
+    "requirements": ["No requiere experiencia previa.", "Computador con Office o Google Workspace."],
+    "modules": [
+      {
+        "id": 1,
+        "title": "Introducción a Word",
+        "locked": false,
+        "lessons": [
+          { "title": "Formato de documentos", "duration": "11:00", "type": "video" },
+          { "title": "Plantillas y estilos", "duration": "9:40", "type": "video" }
+        ]
+      },
+      { "id": 2, "title": "Fundamentos de Excel", "locked": true },
+      { "id": 3, "title": "Presentaciones con PowerPoint", "locked": true }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Manejo de Excel Intermedio",
+    "shortDescription": "Domina fórmulas, tablas dinámicas y gráficos para analizar datos como un profesional.",
+    "category": "Ofimática",
+    "level": "Intermedio",
+    "duration": "16 horas",
+    "rating": 4.7,
+    "reviews": 610,
+    "tags": ["Top Rated"],
+    "featured": true,
+    "icon": "table_chart",
+    "instructor": {
+      "name": "Andrés Palacio",
+      "title": "Analista de Datos",
+      "company": "MPED Academic",
+      "bio": "Andrés ha trabajado optimizando procesos administrativos con Excel avanzado en empresas de retail y logística."
+    },
+    "badgeName": "Excel Ready",
+    "whatYouWillLearn": [
+      "Aplicar fórmulas y funciones intermedias (BUSCARV, SI, SUMAR.SI).",
+      "Crear tablas dinámicas para resumir datos.",
+      "Construir gráficos claros para presentar información.",
+      "Organizar y depurar bases de datos en Excel."
+    ],
+    "requirements": ["Conocimientos básicos de Excel.", "Computador con Excel o Google Sheets."],
+    "modules": [
+      {
+        "id": 1,
+        "title": "Fórmulas y funciones",
+        "locked": false,
+        "lessons": [
+          { "title": "BUSCARV y funciones condicionales", "duration": "17:15", "type": "video" },
+          { "title": "Plantilla de práctica (PDF)", "duration": "1 MB", "type": "pdf" }
+        ]
+      },
+      { "id": 2, "title": "Tablas dinámicas y gráficos", "locked": true }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Diseño en Canva",
+    "shortDescription": "Crea piezas gráficas atractivas para redes sociales y marca personal sin experiencia en diseño.",
+    "category": "Diseño Gráfico",
+    "level": "Principiante",
+    "duration": "8 horas",
+    "rating": 4.8,
+    "reviews": 890,
+    "tags": ["Bestseller", "Nuevo"],
+    "featured": true,
+    "icon": "palette",
+    "instructor": {
+      "name": "Valentina Ríos",
+      "title": "Diseñadora Gráfica",
+      "company": "Design Hub",
+      "bio": "Valentina se especializa en diseño para redes sociales y ha enseñado a cientos de jóvenes a crear piezas gráficas profesionales con herramientas gratuitas."
+    },
+    "badgeName": "Diseño Ready",
+    "whatYouWillLearn": [
+      "Crear diseños para redes sociales usando plantillas.",
+      "Aplicar principios básicos de color y tipografía.",
+      "Diseñar un kit de marca personal simple.",
+      "Exportar piezas listas para publicar."
+    ],
+    "requirements": ["No requiere experiencia previa en diseño.", "Cuenta gratuita de Canva."],
+    "modules": [
+      {
+        "id": 1,
+        "title": "Primeros pasos en Canva",
+        "locked": false,
+        "lessons": [
+          { "title": "Explorando plantillas", "duration": "8:50", "type": "video" },
+          { "title": "Color y tipografía básica", "duration": "10:20", "type": "video" }
+        ]
+      },
+      { "id": 2, "title": "Kit de marca personal", "locked": true }
+    ]
+  }
+]

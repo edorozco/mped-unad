@@ -4,11 +4,16 @@ import Footer from './components/layout/Footer'
 import Landing from './pages/Landing'
 import Contact from './pages/Contact'
 import Onboarding from './pages/Onboarding'
-import YoungRegister from './pages/Auth/YoungRegister'
-import EmployerRegister from './pages/Auth/EmployerRegister'
+import Register from './pages/Auth/Register'
 import Login from './pages/Auth/Login'
 import YoungProfile from './pages/Profile/YoungProfile'
 import YoungHome from './pages/Home/YoungHome'
+import YoungDashboard from './pages/Home/YoungDashboard'
+import MyApplications from './pages/Applications/MyApplications'
+import CoursesCatalog from './pages/Courses/CoursesCatalog'
+import CourseDetail from './pages/Courses/CourseDetail'
+import VocationalTest from './pages/VocationalTest/VocationalTest'
+import VocationalResult from './pages/VocationalTest/VocationalResult'
 import OfferDetail from './pages/Offer/OfferDetail'
 import EmployerDashboard from './pages/Employer/EmployerDashboard'
 import CreateJob from './pages/Employer/CreateJob'
@@ -16,21 +21,26 @@ import Applicants from './pages/Work/Applicants'
 import ApplicantProfile from './pages/Work/ApplicantProfile'
 import Attendance from './pages/Work/Attendance'
 import Credentials from './pages/Credentials/Credentials'
+import CredentialDetail from './pages/Credentials/CredentialDetail'
 import Ratings from './pages/Ratings/Ratings'
 import Notifications from './pages/Notifications/Notifications'
 import AdminDashboard from './pages/Admin/AdminDashboard'
 
 function ProtectedRoute({ children, requiredRole }) {
-  const { user, isAuthenticated } = useAuth()
-  
+  const { user, isAuthenticated, loading } = useAuth()
+
+  if (loading) {
+    return null
+  }
+
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />
   }
-  
+
   if (requiredRole && user?.role !== requiredRole) {
     return <Navigate to="/" replace />
   }
-  
+
   return children
 }
 
@@ -42,8 +52,8 @@ function AppRoutes() {
       <Route path="/" element={<Landing />} />
       <Route path="/contacto" element={<Contact />} />
       <Route path="/onboarding" element={<Onboarding />} />
-      <Route path="/auth/young/register" element={<YoungRegister />} />
-      <Route path="/auth/employer/register" element={<EmployerRegister />} />
+      <Route path="/auth/young/register" element={<Register />} />
+      <Route path="/auth/employer/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
 
       <Route path="/empleos" element={<YoungHome />} />
@@ -57,16 +67,46 @@ function AppRoutes() {
         } 
       />
       
-      <Route 
-        path="/home" 
+      <Route
+        path="/home"
         element={
           <ProtectedRoute requiredRole="young">
-            <YoungHome />
+            <YoungDashboard />
           </ProtectedRoute>
-        } 
+        }
       />
       
       <Route path="/offer/:id" element={<OfferDetail />} />
+
+      <Route path="/cursos" element={<CoursesCatalog />} />
+      <Route path="/cursos/:id" element={<CourseDetail />} />
+
+      <Route
+        path="/test-vocacional"
+        element={
+          <ProtectedRoute requiredRole="young">
+            <VocationalTest />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/test-vocacional/resultado"
+        element={
+          <ProtectedRoute requiredRole="young">
+            <VocationalResult />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/postulaciones"
+        element={
+          <ProtectedRoute requiredRole="young">
+            <MyApplications />
+          </ProtectedRoute>
+        }
+      />
       
       <Route 
         path="/employer/dashboard" 
@@ -113,15 +153,24 @@ function AppRoutes() {
         } 
       />
       
-      <Route 
-        path="/credentials" 
+      <Route
+        path="/credentials"
         element={
           <ProtectedRoute>
             <Credentials />
           </ProtectedRoute>
-        } 
+        }
       />
-      
+
+      <Route
+        path="/credentials/:id"
+        element={
+          <ProtectedRoute>
+            <CredentialDetail />
+          </ProtectedRoute>
+        }
+      />
+
       <Route 
         path="/ratings" 
         element={
