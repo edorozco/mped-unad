@@ -10,7 +10,6 @@ const Login = () => {
     emailOrPhone: '',
     password: ''
   })
-  const [isEmployer, setIsEmployer] = useState(false)
   const [resetEmail, setResetEmail] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -26,13 +25,11 @@ const Login = () => {
     setLoading(true)
 
     try {
-      const role = isEmployer ? 'employer' : 'young'
-      await login(formData.emailOrPhone, formData.password, role)
+      const profile = await login(formData.emailOrPhone, formData.password)
 
-      const user = JSON.parse(localStorage.getItem('mped_user'))
-      if (user?.role === 'employer') {
+      if (profile?.role === 'employer') {
         navigate('/employer/dashboard')
-      } else if (user?.role === 'young') {
+      } else if (profile?.role === 'young') {
         navigate(typeof from === 'string' && from.startsWith('/') ? from : '/home')
       } else {
         navigate('/')
@@ -72,10 +69,10 @@ const Login = () => {
         {step === 1 && (
           <>
             <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-4 text-sm text-amber-950">
-              <p className="text-center font-semibold text-amber-900">Demo (UI funcional, sin backend)</p>
+              <p className="text-center font-semibold text-amber-900">Demo (cuentas reales)</p>
 
               <div className="mt-4 space-y-1 border-t border-amber-200/80 pt-4">
-                <p className="font-semibold text-amber-900">Usuario</p>
+                <p className="font-semibold text-amber-900">Joven</p>
                 <p className="text-amber-950/90">
                   <span className="text-amber-800/90">Correo:</span>{' '}
                   <code className="rounded bg-amber-100/90 px-1.5 py-0.5 text-amber-950">joven@demo.local</code>
@@ -84,7 +81,6 @@ const Login = () => {
                   <span className="text-amber-800/90">Contraseña:</span>{' '}
                   <code className="rounded bg-amber-100/90 px-1.5 py-0.5 text-amber-950">demo123</code>
                 </p>
-                <p className="text-xs text-amber-800/80">(sin marcar empresa)</p>
               </div>
 
               <div className="mt-4 space-y-1 border-t border-amber-200/80 pt-4">
@@ -97,7 +93,6 @@ const Login = () => {
                   <span className="text-amber-800/90">Contraseña:</span>{' '}
                   <code className="rounded bg-amber-100/90 px-1.5 py-0.5 text-amber-950">demo123</code>
                 </p>
-                <p className="text-xs text-amber-800/80">(marcar casilla &quot;Soy empresa&quot;)</p>
               </div>
             </div>
             <div className="text-center mb-8">
@@ -111,9 +106,9 @@ const Login = () => {
 
             <form onSubmit={handleLogin} className="space-y-4">
               <Input
-                label="Correo o teléfono"
-                type="text"
-                placeholder="correo@ejemplo.com o +57 300 123 4567"
+                label="Correo electrónico"
+                type="email"
+                placeholder="correo@ejemplo.com"
                 value={formData.emailOrPhone}
                 onChange={(e) => setFormData(prev => ({ ...prev, emailOrPhone: e.target.value }))}
                 error={error}
@@ -128,19 +123,6 @@ const Login = () => {
                 onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
                 required
               />
-
-              <label className="flex items-start gap-3 cursor-pointer select-none">
-                <input
-                  id="login-is-employer"
-                  type="checkbox"
-                  checked={isEmployer}
-                  onChange={(e) => setIsEmployer(e.target.checked)}
-                  className="mt-0.5 h-4 w-4 rounded border-gray-soft-200 text-primary-cyan focus:ring-primary-cyan"
-                />
-                <span className="text-sm text-gray-soft-300 leading-snug">
-                  Soy empresa (acceso empleador)
-                </span>
-              </label>
 
               <div className="text-right">
                 <button

@@ -1,0 +1,321 @@
+// MPED API — esquema Prisma sobre Postgres (Supabase)
+//
+// Nota sobre `Profile.userId`: es 1:1 con `auth.users.id` (tabla gestionada por Supabase
+// Auth, en el schema `auth`, fuera del control de esta migración). Prisma no modela esa
+// tabla ni la relación como FK declarativa aquí; la fila en `profiles` se crea vía
+// POST /api/profiles inmediatamente después de `supabase.auth.signUp()` en el cliente.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  young
+  employer
+  admin
+}
+
+enum PaymentType {
+  POR_DIA    @map("por día")
+  POR_HORA   @map("por hora")
+  POR_EVENTO @map("por evento")
+}
+
+enum Modality {
+  PRESENCIAL @map("Presencial")
+  REMOTO     @map("Remoto")
+  HIBRIDO    @map("Híbrido")
+}
+
+enum ScheduleType {
+  MEDIO_TIEMPO    @map("Medio Tiempo")
+  FINES_DE_SEMANA @map("Fines de Semana")
+  POR_HORAS       @map("Por Horas")
+  NOCTURNO        @map("Nocturno")
+}
+
+enum JobStatus {
+  active
+  paused
+  completed
+}
+
+enum ApplicationStatus {
+  pending
+  confirmed
+  rejected
+}
+
+enum CourseLevel {
+  PRINCIPIANTE @map("Principiante")
+  INTERMEDIO   @map("Intermedio")
+  AVANZADO     @map("Avanzado")
+  TODOS        @map("Todos")
+}
+
+enum LessonType {
+  VIDEO @map("video")
+  PDF   @map("pdf")
+}
+
+enum NotificationType {
+  APPLICATION_ACCEPTED @map("application_accepted")
+  REMINDER             @map("reminder")
+  RATING_RECEIVED      @map("rating_received")
+  CREDENTIAL_EARNED    @map("credential_earned")
+  NEW_JOB              @map("new_job")
+}
+
+model Profile {
+  userId   String  @id @map("user_id") @db.Uuid
+  role     Role
+  name     String
+  email    String  @unique
+  city     String?
+  photoUrl String? @map("photo_url")
+
+  // Solo-young
+  skills           String[] @default([])
+  availability     Json?
+  interests        String[] @default([])
+  profileComplete  Boolean  @default(false) @map("profile_complete")
+
+  // Solo-employer
+  businessName   String? @map("business_name")
+  nit            String?
+  companyLogoUrl String? @map("company_logo_url")
+
+  // Consentimientos (capturados en Register.jsx pero nunca persistidos hoy)
+  consentDataProcessing   Boolean   @default(false) @map("consent_data_processing")
+  consentDataProcessingAt DateTime? @map("consent_data_processing_at")
+  consentAcademic         Boolean   @default(false) @map("consent_academic_validation")
+  consentAcademicAt       DateTime? @map("consent_academic_validation_at")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  jobs              Job[]              @relation("EmployerJobs")
+  applications      Application[]
+  savedJobs         SavedJob[]
+  enrollments       Enrollment[]
+  vocationalResults VocationalResult[]
+  userCredentials   UserCredential[]
+  notifications     Notification[]
+  ratingsGiven      Rating[]           @relation("RatingsGiven")
+  ratingsReceived   Rating[]           @relation("RatingsReceived")
+  attendances       Attendance[]
+
+  @@map("profiles")
+}
+
+model Job {
+  id           String        @id @default(uuid()) @db.Uuid
+  employerId   String        @map("employer_id") @db.Uuid
+  employer     Profile       @relation("EmployerJobs", fields: [employerId], references: [userId])
+  title        String
+  description  String
+  location     String
+  address      String
+  category     String
+  requirements String[]      @default([])
+  payment      Int
+  paymentType  PaymentType   @map("payment_type")
+  duration     String
+  schedule     String
+  modality     Modality
+  scheduleType ScheduleType? @map("schedule_type")
+  startDate    DateTime      @map("start_date") @db.Date
+  isFeatured   Boolean       @default(false) @map("is_featured")
+  status       JobStatus     @default(active)
+  lat          Float?
+  lng          Float?
+  createdAt    DateTime      @default(now()) @map("created_at")
+
+  applications Application[]
+  savedBy      SavedJob[]
+  ratings      Rating[]
+  attendances  Attendance[]
+
+  @@index([category])
+  @@index([status])
+  @@map("jobs")
+}
+
+model Application {
+  id        String            @id @default(uuid()) @db.Uuid
+  jobId     String            @map("job_id") @db.Uuid
+  job       Job               @relation(fields: [jobId], references: [id])
+  youngId   String            @map("young_id") @db.Uuid
+  young     Profile           @relation(fields: [youngId], references: [userId])
+  status    ApplicationStatus @default(pending)
+  appliedAt DateTime          @default(now()) @map("applied_at")
+
+  ratings Rating[]
+
+  @@unique([jobId, youngId])
+  @@index([youngId])
+  @@map("applications")
+}
+
+model SavedJob {
+  jobId     String   @map("job_id") @db.Uuid
+  job       Job      @relation(fields: [jobId], references: [id])
+  youngId   String   @map("young_id") @db.Uuid
+  young     Profile  @relation(fields: [youngId], references: [userId])
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@id([jobId, youngId])
+  @@map("saved_jobs")
+}
+
+model Course {
+  id               String      @id @default(uuid()) @db.Uuid
+  title            String
+  shortDescription String      @map("short_description")
+  category         String
+  level            CourseLevel
+  duration         String
+  rating           Float       @default(0)
+  reviewsCount     Int         @default(0) @map("reviews_count")
+  tags             String[]    @default([])
+  featured         Boolean     @default(false)
+  icon             String
+  badgeName        String      @map("badge_name")
+  whatYouWillLearn String[]    @default([]) @map("what_you_will_learn")
+  requirements     String[]    @default([])
+  /// { name, title, company, bio }
+  instructor       Json
+  createdAt        DateTime    @default(now()) @map("created_at")
+
+  modules     CourseModule[]
+  enrollments Enrollment[]
+
+  @@index([category])
+  @@map("courses")
+}
+
+model CourseModule {
+  id       String  @id @default(uuid()) @db.Uuid
+  courseId String  @map("course_id") @db.Uuid
+  course   Course  @relation(fields: [courseId], references: [id])
+  title    String
+  locked   Boolean @default(true)
+  position Int
+
+  lessons CourseLesson[]
+
+  @@map("course_modules")
+}
+
+model CourseLesson {
+  id       String       @id @default(uuid()) @db.Uuid
+  moduleId String       @map("module_id") @db.Uuid
+  module   CourseModule @relation(fields: [moduleId], references: [id])
+  title    String
+  duration String
+  type     LessonType
+  position Int
+
+  @@map("course_lessons")
+}
+
+model Enrollment {
+  courseId   String   @map("course_id") @db.Uuid
+  course     Course   @relation(fields: [courseId], references: [id])
+  youngId    String   @map("young_id") @db.Uuid
+  young      Profile  @relation(fields: [youngId], references: [userId])
+  enrolledAt DateTime @default(now()) @map("enrolled_at")
+
+  @@id([courseId, youngId])
+  @@map("enrollments")
+}
+
+model VocationalResult {
+  id             String   @id @default(uuid()) @db.Uuid
+  youngId        String   @map("young_id") @db.Uuid
+  young          Profile  @relation(fields: [youngId], references: [userId])
+  /// { tecnico, creativo, liderazgo, servicio }
+  counts         Json
+  totalQuestions Int      @map("total_questions")
+  completedAt    DateTime @default(now()) @map("completed_at")
+
+  @@index([youngId])
+  @@map("vocational_results")
+}
+
+model Credential {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String
+  description String
+  icon        String
+  imageUrl    String?  @map("image_url")
+  category    String
+  skills      String[] @default([])
+
+  userCredentials UserCredential[]
+
+  @@map("credentials")
+}
+
+model UserCredential {
+  id             String     @id @default(uuid()) @db.Uuid
+  credentialId   String     @map("credential_id") @db.Uuid
+  credential     Credential @relation(fields: [credentialId], references: [id])
+  youngId        String     @map("young_id") @db.Uuid
+  young          Profile    @relation(fields: [youngId], references: [userId])
+  earnedDate     DateTime   @map("earned_date") @db.Date
+  verificationId String     @map("verification_id")
+
+  @@unique([credentialId, youngId])
+  @@map("user_credentials")
+}
+
+model Notification {
+  id           String           @id @default(uuid()) @db.Uuid
+  userId       String           @map("user_id") @db.Uuid
+  user         Profile          @relation(fields: [userId], references: [userId])
+  type         NotificationType
+  title        String
+  message      String
+  read         Boolean          @default(false)
+  jobId        String?          @map("job_id") @db.Uuid
+  credentialId String?          @map("credential_id") @db.Uuid
+  createdAt    DateTime         @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@map("notifications")
+}
+
+model Rating {
+  id            String       @id @default(uuid()) @db.Uuid
+  jobId         String       @map("job_id") @db.Uuid
+  job           Job          @relation(fields: [jobId], references: [id])
+  applicationId String?      @map("application_id") @db.Uuid
+  application   Application? @relation(fields: [applicationId], references: [id])
+  raterId       String       @map("rater_id") @db.Uuid
+  rater         Profile      @relation("RatingsGiven", fields: [raterId], references: [userId])
+  rateeId       String       @map("ratee_id") @db.Uuid
+  ratee         Profile      @relation("RatingsReceived", fields: [rateeId], references: [userId])
+  rating        Int
+  comment       String?
+  createdAt     DateTime     @default(now()) @map("created_at")
+
+  @@map("ratings")
+}
+
+model Attendance {
+  id          String    @id @default(uuid()) @db.Uuid
+  jobId       String    @map("job_id") @db.Uuid
+  job         Job       @relation(fields: [jobId], references: [id])
+  youngId     String    @map("young_id") @db.Uuid
+  young       Profile   @relation(fields: [youngId], references: [userId])
+  checkInAt   DateTime? @map("check_in_at")
+  checkOutAt  DateTime? @map("check_out_at")
+  hoursWorked Float?    @map("hours_worked")
+
+  @@map("attendance")
+}

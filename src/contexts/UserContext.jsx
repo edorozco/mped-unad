@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext } from 'react'
 import { useAuth } from './AuthContext'
 
 const UserContext = createContext()
@@ -11,54 +11,17 @@ export function useUser() {
   return context
 }
 
+/** El perfil real ahora vive en `profiles` (API) y se resuelve en AuthContext (`user`). */
 export function UserProvider({ children }) {
   const { user, updateUser } = useAuth()
-  const [profile, setProfile] = useState(null)
 
-  useEffect(() => {
-    if (user) {
-      // Load profile from localStorage or use default
-      const savedProfile = localStorage.getItem(`mped_profile_${user.id}`)
-      if (savedProfile) {
-        setProfile(JSON.parse(savedProfile))
-      } else {
-        // Initialize with user data
-        setProfile({
-          name: user.name || '',
-          photo: user.photo || '',
-          skills: user.skills || [],
-          availability: user.availability || {},
-          interests: user.interests || [],
-          profileComplete: user.profileComplete || false
-        })
-      }
-    }
-  }, [user])
-
-  const updateProfile = (profileData) => {
-    const updatedProfile = { ...profile, ...profileData }
-    setProfile(updatedProfile)
-    
-    if (user) {
-      localStorage.setItem(`mped_profile_${user.id}`, JSON.stringify(updatedProfile))
-      updateUser(updatedProfile)
-    }
-  }
-
-  const completeProfile = () => {
-    const completedProfile = { ...profile, profileComplete: true }
-    setProfile(completedProfile)
-    
-    if (user) {
-      localStorage.setItem(`mped_profile_${user.id}`, JSON.stringify(completedProfile))
-      updateUser(completedProfile)
-    }
-  }
+  const updateProfile = (profileData) => updateUser(profileData)
+  const completeProfile = () => updateUser({ profileComplete: true })
 
   const value = {
-    profile,
+    profile: user,
     updateProfile,
-    completeProfile
+    completeProfile,
   }
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>

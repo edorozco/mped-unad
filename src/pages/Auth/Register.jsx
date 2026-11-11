@@ -79,10 +79,10 @@ const Register = () => {
 
     setLoading(true)
     try {
-      await register({ ...formData, role })
+      await register({ ...formData, role, consents: consent })
       navigate(ROLE_DESTINATIONS[role], { state: { justRegistered: true } })
     } catch (err) {
-      setError("Error al crear la cuenta. Intenta nuevamente.")
+      setError(err?.message || "Error al crear la cuenta. Intenta nuevamente.")
     } finally {
       setLoading(false)
     }
