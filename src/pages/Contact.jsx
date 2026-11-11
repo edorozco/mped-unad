@@ -18,7 +18,7 @@ const Contact = () => {
             </p>
             <h1 className="text-4xl md:text-5xl font-display font-bold text-balance">Nuestro equipo</h1>
             <p className="mt-4 text-lg text-white/85 max-w-2xl text-balance leading-relaxed">
-              Proyecto de Grado · Universidad Nacional Abierta y a Distancia (UNAD)
+              Emprendimiento de Base Tecnológica · Universidad Nacional Abierta y a Distancia (UNAD)
             </p>
           </div>
         </section>
