@@ -2,8 +2,9 @@
 export const ACADEMIC_PARTICIPANTS = [
   "Edwin Camilo Orozco Marquez",
   "Elver Jonathan Rivera",
-  "Gustavo Antonio Rojas Dcroz",
-  "Brayan Pino",
+  "Diana Lizeth Ocampo Vargas",
+  "Alvaro Jose Ibarra Fernandez",
+  "Jhon Alexander Sandoval Yule",
 ]
 
 /** Mismo perfil para todo el equipo en esta demo */

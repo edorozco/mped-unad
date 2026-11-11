@@ -349,7 +349,7 @@ const Landing = () => {
                 Nuestro equipo
               </h2>
               <p className="text-lg text-gray-soft-300 leading-relaxed">
-                Proyecto de Grado · Universidad Nacional Abierta y a Distancia (UNAD)
+                Emprendimiento de Base Tecnológica · Universidad Nacional Abierta y a Distancia (UNAD)
               </p>
             </div>
 
